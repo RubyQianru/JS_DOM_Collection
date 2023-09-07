@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            var body = document.getElementsByTagName("body")[0];
+            //在document中有一个属性就叫body，它保存的是body的引用
+            var body = document.body;
+            //document.documentElement 保存的是html根标签
+            var html = document.documentElement;
+            // 页面中的所有元素
+            var all = document.getElementsByTagName("*")//“*”表示所有
+            all = document.all;//这俩一样的
+            //根据元素class属性值查询一组元素节点对象
+            var box1 = document.getElementsByClassName("box1");//不完全推荐
+            //获取class为box1中的所有div
+            //.box1 div
+            //document.querySelector()
+                //需要一个选择器的字符串作为参数，可以根据css选择器来查询一个元素节点对象
+                //只会返回第一个
+            var divs = document.querySelector(".box1 div");
+            var box1 = document.querySelector(".box1");
+            box1 = document.querySelectorAll(".box1");
+            //document.querySelectorAll() 会将所有符合条件的元素封装到一个数组返沪
+            
+
+
+
+
+
+        }
+
+    </script>
+</head>
+<body>
+    <div class="box1"></div>
+    <div>
+        <div>
+
+        </div>
+    </div>
+    
+</body>
+</html>

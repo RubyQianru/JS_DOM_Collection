@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #info{
+            width: 300px;
+            height: 500px;
+            background-color: aquamarine;
+            overflow: auto;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            /*
+            当垂直滚动条滚动到底时便可以使用checkbox和submit
+            */
+           var info = document.getElementById("info");
+           var input = document.getElementsByTagName("input");
+
+           info.onscroll = function(){
+                if(info.scrollHeight - info.scrollTop == info.clientHeight){
+                    for(var i = 0; i < input.length; i ++){
+                        input[i].disabled = false;
+                    }
+            }
+           }
+
+           
+        }
+        
+
+    </script>
+</head>
+<body>
+    <h3>亲爱的用户</h3>
+    <p id="info">
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+        亲爱的用户你好，感谢你的注册，请仔细阅读条款。
+    </p>
+    <!--disabled-->
+    <input type="checkbox" disabled="disabled"/>我已经仔细阅读协议。
+    <input type="submit" disabled = "disabled" value="注册"/>
+    
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--可以将js代码编写到外部js文件中，通过script标签引入-->
+    <!--一旦一个script已经有了外部的文件了，就不能再写内部代码了，除非再有个新的script标签-->
+    <script type = "text/javascript" src = "script.js">
+    </script>
+    
+</head>
+<body>
+    <!--js代码编写到标签onclick属性中-->
+    <button onclick="alert('Aya!');">点我一下</button>
+    <!--js代码编写到href属性中-->
+    <a href="javascript:alert('Ayayayayaya!');">你也点我一下</a>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+        #box2{
+            width: 100px;
+            height: 100px;
+            background-color: burlywood;
+            position: absolute;
+            top: 200px;
+        }
+    </style>
+    <script type="text/javascript" src="move.js" ></script>
+    <script type="text/javascript">
+        window.onload = function(){
+            var box1 = document.getElementById("box1");
+            var box2 = document.getElementById("box2");
+
+            var btn01 = document.getElementById("btn01");
+            var btn02 = document.getElementById("btn02");
+            var btn03 = document.getElementById("btn03");
+            var btn04 = document.getElementById("btn04");
+
+            // var timer;
+
+            //创一个可以执行简单动画的函数
+            //attr 要执行动画的样式
+            //callback 回调函数，这个函数将会在动画执行完毕后执行
+            
+
+            btn01.onclick = function(){
+                move (box1, "left", 800, 10, function(){
+                    alert("over");
+                });
+            };
+
+            btn02.onclick = function(){
+                move (box1, "left", 0, 10, function(){
+                    alert("over");
+                });
+            };
+
+            btn03.onclick = function(){
+                move(box2, "left", 800, 5, function(){
+                    alert("over");
+                });
+            };
+
+            btn04.onclick = function(){
+                move(box2, "width", 800, 5, function(){
+                    move(box2, "height", 800, 5, function(){
+                        alert("over");
+                    });
+                });
+            }
+
+            
+        }
+
+    </script>
+</head>
+<body>
+    <button id="btn02">TO THE LEFT</button>
+
+    <button id="btn01">TO THE RIGHT</button>
+
+    <button id="btn03">TO THE RIGHT</button>
+
+    <button id="btn04">TEST</button>
+    <br><br>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div style="width: 0; height: 1000px; border-left: black solid; position: absolute; left: 800px; top: 0px;"></div>
+</body>
+</html>

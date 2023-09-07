@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        /*
+        在调用函数时，浏览器每次都会传递两个隐含的参数
+            1.函数的上下文对象this
+            2.封装实参的对象arguments
+                - arguments是一个类数组对象
+                - arguments[0]表示第一个实参
+                - arguments[1]表示第二个实参
+            3.arguments里有一个属性叫做callee
+                这个属性对应的一个函数对象，就是当前正在执行的函数的对象
+            
+                        */
+        function func(){
+            console.log(arguments instanceof Array);
+            console.log(Array.isArray(arguments));
+            console.log(arguments.length);
+        }
+        func(1,2,3);    
+
+        /*
+        Date对象表示时间
+        如果直接使用构造函数创建一个Date对象，则会封装成当前代码执行的时间
+        */
+        var d = new Date();
+        console.log(d);
+
+        //创建一个指定的时间对象
+        //需要在构造函数中传递一个表示时间的字符串作为参数（月份/日/年份 时：分：秒）
+        var d2 = new Date("12/03/2016 11:10:30");
+        console.log(d2);
+
+        //getDate（）
+            //-获取当前对象日期是几日
+        //getDay()
+            //-获取当前对象日期是周几（0-6）
+        //getMonth()
+            //-获取当前对象日期是几月（0-11）
+        //getFullYear()
+            //-获取当前对象日期是多少年
+        //getTime()
+            //-获取当前日期对象的时间戳
+            //-时间戳指的是从格林威治时间1970年1月1日，0分0分0秒到当前时间的毫秒数
+            //-计算机底层在保存时间时使用的都是时间戳
+        var date = d2.getDate();
+        var day = d2.getDay();
+        var month = d2.getMonth();
+        var year = d2.getFullYear();
+        var time = d2.getTime();
+        console.log(day);
+        console.log(time);
+
+        time = Date.now();//代码执行时的时间戳
+        console.log(time);
+        
+
+        </script>
+</head>
+<body>
+    
+</body>
+</html>

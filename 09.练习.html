@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box1{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+				/*
+				 * 开启box1的绝对定位, 才能js中改变坐标
+				 */
+				position: absolute;
+			}
+			
+		</style>
+		
+		<script type="text/javascript">
+			window.onload = function(){
+				var box = document.getElementById("box1");
+				document.onmousemove = function(event){
+
+                    //clientX 和clientY
+                    //  -用于获取鼠标在可见窗口的坐标
+                    //pageX 和pageY 可以获取鼠标相对于当前页面的坐标
+					var x = event.pageX;
+					var y = event.pageY;
+					box1.style.left = x +"px";
+					box1.style.top = y +"px";
+				}
+				
+				
+			};
+			
+			
+		</script>
+	</head>
+	<body style="height: 1000px;width: 2000px;">
+        <div style="width: 500px; height: 500px; background-color: cornflowerblue;"></div>
+		<div id="box1"></div>
+	</body>
+</html>

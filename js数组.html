@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        /*
+        内建对象
+        宿主对象
+        自定义对象
+
+        数组（Array）
+            -数组也是一个对象
+            -它和我们普通对象功能类似，也是用来存储一些数据、值的
+            -不同的是普通对象是使用字符串作为属性名的
+                而Array使用数字来作为操作元素 
+            -索引index
+                从0开始的整数
+        */
+
+        var obj = new Object();
+        obj.name = "Ruby";
+        obj = null;
+
+        var arr = new Array();
+        console.log(typeof arr); //返回Object
+
+        arr[0] = 10;
+        arr[1] = 33;
+
+        /*
+        可以使用length属性来获取数组的长度
+        可以修改length长度来修改数组的长度
+        */
+
+        arr.length = 10;
+        console.log(arr.length);
+        arr[arr.length] = 40;
+        arr[arr.length] = 50;
+
+        //使用字面量来创建数组，可以在创建时指定数组中的元素
+        var arr2 = [];
+        var arr3 = [1,2,3,4,5,6];
+        //使用构造函数创建数组，不常用
+        var arr4 = new Array(10,20,30);
+
+        //数组中的元素可以时任意数据类型，也可以是Object和函数
+        var arr5 = [1, "Ruby", 13, true];
+        var arr6;
+        arr6 = [{name: "Ruby"}, {name: "Charlie"}];
+
+        /*
+        push（）
+            -该方法可以向数组的末尾添加一个或者多个元素，并返回数组新的长度
+            -可以添加多个
+        pop()
+            -删除array的最后一个元素
+        unshift()
+            -向数组开头添加一个或多个元素，并返回数组长度
+        shift()
+            -删除数组开头的第一个元素；
+        */
+
+        arr.unshift(99);
+        arr.push(1,2,3);
+        arr.pop();
+        arr.shift();
+        
+        //数组的遍历。就是将所有的元素都取出来
+        for(var i = 0; i < arr.length; i++){
+            console.log(arr[i]);
+        }
+
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+        }
+
+        Person.prototype.toString = function(){
+            return "Name: "+this.name;
+        }
+
+        var per1 = new Person("Ruby",23);
+        var per2 = new Person("Charlie",25);
+        var per3 = new Person("Coco", 13);
+
+        var arr7 = [per1, per2, per3];
+
+        for(var i = 0; i < arr7.length; i++){
+            if(arr7[i].age>18){
+                console.log(arr7[i].toString());
+            }
+        }
+
+        function getAdult(arr){
+            var newArray = new Array();
+            for(var i = 0; i < arr.length; i++){
+                if(arr[i].age >= 18){
+                    newArray.push(arr[i]);
+                }
+            }
+            return newArray;
+        }
+
+        var newArray = getAdult(arr7);
+        for(var i = 0; i <newArray.length; i ++){
+            console.log(newArray[i].toString());
+        }
+
+        //ForEach（） 方法：用来遍历数组，只支持ie8以上
+        newArray.forEach(function(item, index){
+            console.log(index+" "+item);
+        });
+
+        //Slice
+        var arr8 = [0,1,2,3,4];
+        var arr9 = arr8.slice(0,2);
+        console.log(arr9);
+        //如果只传一个参数，就会slice这个参数index之后的所有的元素
+        var arr10 = arr8.slice(1,-1);
+        console.log(arr10);
+        //-1 index表示倒数第一个
+
+        //Splice: 删除元素并向array添加新元素，会影响到原数组
+        //第一个参数表示开始的位置的index，第二个表示删除的数量
+        //第三个参数及以后，可以传递一些新的元素，这些元素会自动插入到开始的位置
+        var result = arr8.splice(0,2,99,98);
+        console.log(arr8);
+        console.log(result);
+
+        //Practice
+        var pracArr = [1,2,3,2,2,1,3,4,2,5];
+        function delRep(arr){
+            var newArr = new Array();
+            for(var i = 0; i < arr.length; i++){
+                var num = arr[i];
+                var ifRep = false;
+                for(var j = 0; j < newArr.length; j++){
+                    if(num == newArr[j]){
+                        ifRep = true;
+                    }
+                }
+                if(ifRep == false){
+                    newArr.push(num);
+                }
+            }
+            return newArr;
+        }
+        var afterArr = delRep(pracArr);
+        console.log(afterArr);
+
+        //concat()：链接俩个或多个数组，并将新的数组返回
+        var arr11 = afterArr.concat(arr10, 1000000);
+        console.log(arr11);
+
+        //join()：将Array转换为一个字符串
+        //括号中这个字符串会成为数组中元素的连接符
+        var arr12 = arr11.join("");
+        console.log(arr12);
+
+        //reverse（）：该方法用来反转数组（前边的去后边，后边的去前边
+        //该方法会直接修改数组
+        arr11.reverse();
+        console.log(arr11);
+
+        //sort(): 排序，会按照unicode的编码排序
+        //我们可以自己来指定排序规则，我么可以在sort（）里添加一个回调函数，来指定规则
+        //  -浏览器会根据回调函数的返回值来决定元素的顺序
+        //      如果返回一个大于0的值，则元素会交换位置
+                //如果返回一个小于0的值，则元素位置不变
+        arr11.sort();
+        console.log(arr11);
+
+        arr11.sort(function(a,b){
+            // if(a>b){
+            //     return 1;
+            // }else if(a<b){
+            //     return -1;
+            // }else{
+            //     return 0;
+            // }
+
+            return a-b;
+        });
+        
+        console.log(arr11);
+
+        //call()和apply（）
+        //  -这两个方法都是函数对象的方法，需要通过函数对象来调用
+        //  -可以将一个对象传入，此时这个对象就成为函数执行时的this
+
+        function func7(a,b){
+            console.log(a);
+            console.log(b);
+        }
+
+        var obj = {
+            name: "Ruby",
+            age: 23,
+            sayName: function(){
+                alert(this.name);
+            }
+        };
+
+        //call()方法可以将实参在对象之后依次传递
+        //apply（）方法需要将实参封装在一个数组里传递
+        func7.call(obj,1,2);
+        func7.apply(obj,[2,3]);
+
+
+
+
+
+
+
+
+ 
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

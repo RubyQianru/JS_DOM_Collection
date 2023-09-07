@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        //使div可以根据不同的方向向不同的方向移动
+        window.onload = function(){
+            var box1 = document.getElementById("box1");
+            var speed = 10;
+            //创建一个变量表示方向
+            var dir = 0;
+            //开启一个定时器，来控制div的移动
+            setInterval(function(){
+                document.onkeyup = function(){
+                    dir = 0;
+                }
+                if(dir == 37){
+                    box1.style.left = box1.offsetLeft - speed + "px";
+                }else if(dir == 38){
+                    box1.style.top = box1.offsetTop - speed + "px";
+                }else if(dir == 39){
+                    box1.style.left = box1.offsetLeft + speed + "px";
+                }else if(dir == 40){
+                    box1.style.top = box1.offsetTop + speed + "px";
+                }
+            },30);
+
+            document.onkeydown = function(event){
+                if(event.ctrlKey){
+                    speed = 100;
+                }else{
+                    speed = 10;
+                }
+                dir = event.keyCode;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box1"></div>
+    
+</body>
+</html>

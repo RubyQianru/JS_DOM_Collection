@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        .b1{
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+        }
+        .b2{
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            var btn01 = document.getElementById("btn01");
+            var box = document.getElementById("box");
+            btn01.onclick = function (){
+                //修改box的样式
+                /*
+                通过style属性来修改元素的样式，没修改一个样式，就要重新渲染一次
+                这样的执行性能比较差
+                我们希望一行代码，可以同时修改多个样式
+                */
+                // box.style.width = "200px";
+                // box.style.height = "200px";
+                // box.style.backgroundColor = "pink";
+
+                /*
+                可以通过修改class属性来间接的修改样式
+                */
+                addClass(box, "b2");
+            };
+        };
+
+        //定义一个函数，用来向一个元素中添加指定class属性值
+        /*
+        参数：
+            obj 要添加class属性的元素
+            cn  要添加的class的值
+        */
+
+        function addClass(obj, cn){
+            if (!hasClass(obj, cn)){
+                obj.className += " " + cn;
+            }
+        };
+
+        //判断一个元素中是否含有class属性值
+        function hasClass(obj, cn){
+            var reg = new RegExp("\\b" + cn + "\\b");
+            return reg.test(obj.className);
+        };
+
+        function removeClass(obj, cn){
+            var reg = new RegExp("\\b" + cn + "\\b");
+            obj.className = obj.className.replace(reg, ""); //用空串来替换reg
+        };
+
+        function toggleClass(obj, cn){
+            if(hasClass(obj,cn)){
+                removeClass(obj, cn);
+            }else{
+                addClass(obj.cn);
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn01">修改box样式</button>
+    <br><br>
+    <div id="box" class="b1"></div>
+</body>
+</html>

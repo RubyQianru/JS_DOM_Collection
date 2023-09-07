@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        /*
+        作用域
+            作用域一个变量的范围
+            两种作用域
+                1.全局作用域
+                    直接编写在script标签中的js代码，都在全局作用域中
+                    全局作用域再页面打开时创建，关闭时销毁
+                    在全局作用域中有一个全局对象window
+                        代表的是一个浏览器的窗口，由我们的浏览器创建，可以直接使用
+                    在全局组作用域中
+                        创建的变量都会作为window对象属性保存
+                2.函数作用域
+                    
+        *变量声明提前
+            使用var关键字声明的变量，会在所有的代码执行之前被声明
+            使用函数声明形式创建的function（）{}会在所有代码执行前被创建
+        */
+
+        var a = 0;
+        console.log(window.a);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

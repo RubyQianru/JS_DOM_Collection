@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        /*
+        创建对象
+            使用new关键词的函数，构造函数constructor
+        赋予属性
+            向对象添加属性：对象.属性名 = 属性值
+            使用特殊属性名，需要使用另一种方式：对象["属性名"]
+        栈内存&堆内存
+            对象保存在堆内存中（pointer）每创建一个新对象就会再堆内存中开辟出一个新的空间
+            变量保存的是对象的内存地址
+            当一个通过变量改变属性时，另一个也会收到影响
+        */
+        var obj = new Object();
+        obj.name = "孙悟空";
+        obj.age = 123;
+
+        delete obj.name;
+
+        obj["123"] = 789;
+
+        console.log(obj);
+        console.log(obj.age);
+        console.log(obj["123"]);
+
+        //一下两个建立新object的方式一样的
+        var obj2 = new Object();
+        var obj3 = {};
+
+        console.log(obj3);
+        console.log(typeof obj3);
+
+        var obj4 = {
+
+            name: "Rubibi",
+            age: 23,
+            test:{name: "Ruby"}
+        };
+
+        console.log(obj4);
+
+        //工厂创建对象
+        var obj5 = {
+            name: "Ruby",
+            age: 18,
+            gender: "F",
+            sayName: function(){
+                alert(this.name);
+            }
+        };
+
+        function createPerson(NAME, AGE, GENDER){
+            var obj = new Object();
+            obj.name = NAME;
+            obj.age = AGE;
+            obj.gender = GENDER;
+            obj.sayName = function(){
+                alert(this.name);
+            }
+            return obj;
+        }
+
+        createPerson("CM", 25, "M");
+
+        //构造函数
+        //构造函数和普通函数的区别就是调用方法不同
+
+        /*
+        构造函数执行流程
+            1.立刻创建一个新的对象
+            2.将新建的对象设置为函数中的this
+            3.逐行执行函数中的代码
+            4.将新建的对象作为返回值返回
+        */
+        function Person(name, age, gender){
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
+        
+        //原型 prototype
+        Person.prototype.sayName = function(){
+            alert(this.name);
+        }
+
+        var per1 = new Person("Ruby", 23, "F");
+
+        function Dog(){
+        }
+        var dog1 = new Dog();
+
+        console.log(per1 instanceof Person);
+
+        console.log("name" in per1);
+        //用in检查对象中含有某个属性，如果对象中没有但是原型中有，也会返回true
+        console.log(per1.hasOwnProperty("age"));
+        //该方法只有对象自身中含有属性时，才会返回true
+        console.log(per1.__proto__.hasOwnProperty("hasOwnProperty"));
+
+        var result = per1.toString();
+        console.log(per1.hasOwnProperty("toString"));
+
+        //在对象中添加一个toString（）方法
+        per1.toString = function(){
+            return "Name = "+this.name+", Age = "+this.age+", Gender = "+this.gender;
+        }
+        var result2 = per1.toString();
+        console.log(result2);
+
+        //在Person prototype中添加一个toString（）方法
+        Person.prototype.toString = function(){
+            return "Name = "+this.name+", Age = "+this.age+", Gender = "+this.gender;
+        }
+
+        //垃圾回收（GC） 
+        //什么是垃圾？？
+        //js中有自动回收垃圾的机制，会自动将垃圾对象从内存中销毁，我们需要把不再需要的对象设置为null
+        var obj1 = new Object();
+        obj1 = null;
+
+        
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

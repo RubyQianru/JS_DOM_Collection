@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type = "text/javascript">
+        /*
+        解析器在调用函数每次都会向函数内部传递一个隐含的参数
+        这个隐含的参数叫this
+        
+        */
+    function func(){
+        console.log(this.name);
+    }
+    var obj1 = {
+        name: "Rubibi",
+        printName: func
+    }
+    obj1.printName();
+
+    var name = fullWindow;
+    function func2(){
+        console.log(this.name);
+    }
+    var obj = {
+        name: "Ruby",
+        sayName: func2
+    }
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            var prev = document.getElementById("prev");
+            var next = document.getElementById("next");
+            
+            //要切换图片就是要修改img标签的src属性
+            //获取img标签
+            var img = document.getElementsByTagName("img")[0];
+            //创建一个数组用来保存图片的路径
+            var imgArr = ["1.png","2.png", "3.jpg","4.png","5.jpg"];
+            var ind = 0;
+            //设置提示文字
+                //获取id为info的元素
+            var info = document.getElementById("info");
+            info.innerHTML = "一共"+imgArr.length+"张图片，这是第"+(ind+1)+"张";
+            prev.onclick = function(){
+                ind--;
+                if(ind <0){ind = 0;}
+                img.src = imgArr[ind];
+                info.innerHTML = "一共"+imgArr.length+"张图片，这是第"+(ind+1)+"张";
+            }
+
+            next.onclick = function(){
+                ind++;
+                if(ind>imgArr.length-1){
+                    ind = 0;
+                }
+                img.src = imgArr[ind];
+                info.innerHTML = "一共"+imgArr.length+"张图片，这是第"+(ind+1)+"张";
+
+            }
+        }
+
+        
+    </script>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer{
+            width: 600px;
+            margin: 50px auto;
+            background-color: aquamarine;
+            padding: 10px;
+            /*设置文本居中*/
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="outer">
+        <p id="info"></p>
+        <img src="1.png" alt="FRONT">
+        <button id="prev"><上一张</button>
+        <button id="next">下一张></button>
+    </div>
+</body>
+</html>

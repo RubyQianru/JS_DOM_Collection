@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        window.onload = function(){
+            //获取所有的a
+            var btn01 = document.getElementById("btn01");
+            var = u1 = document.getElementById("u1");
+            btn01.onclick = function(){
+                var li = document.createElement("li");
+                li.innerHTML = "<a href='javascript:;' class='link'>新建的超链接</a>";
+                //将li添加到ul中
+                u1.appendChild(li);
+
+            };
+
+            /*
+            这里我们的每一个超链接都绑定了一个单击响应函数
+            这里我们为每一个超链接绑定一个单击响应函数，这种操作比较麻烦
+            而且这些操作只为已有的超链接设置事件，在为新添加的查奥链接必须重新绑定
+
+            我们希望只绑定一次事件，即可应用到多个元素，即使元素是后添加的
+            我们可以将其绑定给i元素共同的祖先元素
+            */
+            var allA = document.getElementsByTagName("a");
+            // for (var i = 0; i <allA.length; i ++){
+            //     allA[i].onclick = function(){
+            //         alert("Hello!");
+            //     }
+            // };
+            u1.onclick = function(event){
+                if(event.target.className == "link"){
+                    alert("Hello");
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn01">添加超链接</button>
+    <ul id="ul">
+        <li><a href="javascript:;" class="link">超链接一</a></li>
+        <li><a href="javascript:;" class="link">超链接二</a></li>
+        <li><a href="javascript:;" class="link">超链接三</a></li>
+
+    </ul>
+</body>
+</html>

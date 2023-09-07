@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #box1{
+            width: 100px;
+            height: 100px;
+            background-color: aquamarine;
+            position: absolute;
+        }
+        #box2{
+            width: 100px;
+            height: 100px;
+            background-color: yellowgreen;
+            position: absolute;
+            left: 200px;
+            top: 200px;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function(){
+            /*
+            脱拽box1元素
+            1. 当鼠标在被拖拽元素上按下时，开始拖拽     onmousedown
+            2. 当鼠标移动时被拖拽随着鼠标移动       onmousemove
+            3. 当鼠标送开时，被拖拽元素固定在当前位置       onmouseup
+            */
+
+            var box1 = document.getElementById("box1");
+            box1.onmousedown = function(event){
+                //设置让box1 setCapture主动捕获到事件 IE8
+                // box1.setCpture();
+                event = event || window.event;
+                //求出div的偏移量 鼠标.clienX - 元素.offestLeft
+                var ol = event.clientX - box1.offsetLeft;
+                var ot = event.clientY - box1.offsetTop;
+
+
+                document.onmousemove = function(event){
+                    event = event || window.event;
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+
+                    box1.style.left = left + "px";
+                    box1.style.top = top + "px";
+                }
+
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                    //当鼠标送开时，取消对于box1的捕获 IE8
+                    // box1.releaseCapture();
+                }
+
+                /*
+                当我们拖拽一个网页的内容时，浏览器会默认去搜索搜做引擎中搜索内容
+                导致我们拖拽内容的异常
+                如果不希望出现这个行为，则需要在函数最后写上 return false
+                */
+
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    我是一段文字
+    <div id="box1"></div>
+    <div id="box2"></div>
+    
+</body>
+</html>
